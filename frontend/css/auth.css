@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+    --blue : #305CDE;
+    --red : #FF4C61;
+    --green : #004C1C;
+    --light-green : #8CE18B;
+    --yellow : #FFC107;
+}
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;    
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.form-container {
+    width: 400px;
+    margin: 10% auto 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.form-container .form-group {
+    margin-bottom: 15px;
+}
+.form-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+.form-container .form-group input {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+}
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 15px 0;
+    font-weight: bold;
+}
+.form-container .alternate {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* form validation class */
+.invalid-form{
+    border-color: var(--red) !important;
+}
+
+/* Position du toast */
+.toast {
+    position: fixed;
+    top: -80px; /* caché au départ */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #3CAF50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.toast.error {
+    background-color: var(--red);
+}
+.toast.success {
+    background-color: var(--green);
+}
+
+/* Quand le toast est visible */
+.toast.show {
+    top: 20px;      /* il descend */
+    opacity: 1;     /* il apparaît */
+}
+
