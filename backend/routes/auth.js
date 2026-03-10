@@ -33,7 +33,7 @@ router.post('/login', (req, res) => {
         if (!isPasswordValid) {
             return res.status(401).json({ error: 'Email ou mot de passe incorrect' })
         }
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' })
+        const token = jwt.sign({ userId: user._id, userName: user.username,userEmail: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' })
         res.json({ token })
     })
 })
