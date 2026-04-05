@@ -5,10 +5,10 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const authMiddleware = require('../middlewares/auth')
 
-router.get('/', (req, res) => {
-    User.find()
+router.get('/', authMiddleware, (req, res) => {
+    User.find().select('-password')
     .then(users => res.json(users))
-    .catch(err => res.status(500).json({ error: 'Erreur lors de la récupération des utilisateurs' }))
+    .catch(() => res.status(500).json({ error: 'Erreur lors de la récupération des utilisateurs' }))
 })
 router.post('/register', (req, res) => {
     const { username, email, password } = req.body
@@ -20,7 +20,7 @@ router.post('/register', (req, res) => {
     })
     newUser.save()
     .then(() => res.status(201).json({ message: 'Utilisateur créé avec succès' }))
-    .catch(err => res.status(500).json({ error: 'Erreur lors de la création de l\'utilisateur' }))  
+    .catch(() => res.status(500).json({ error: 'Erreur lors de la création de l\'utilisateur' }))  
 })
 router.post('/login', (req, res) => {
     const { email, password } = req.body
@@ -36,5 +36,6 @@ router.post('/login', (req, res) => {
         const token = jwt.sign({ userId: user._id, userName: user.username,userEmail: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' })
         res.json({ token })
     })
+    .catch(() => res.status(500).json({ error: 'Erreur lors de la connexion' }))
 })
 module.exports = router

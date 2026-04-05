@@ -4,19 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Note app</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav>
-        <a href="index.html" id="homeLogo">Task Flow</a>
-        <button id="logout-btn">Se déconnecter</button>
-    </nav>
-    <h1>Bonjour <span id="username"></span></h1>
-    <h3>Voici tes notes</h3>
-    <div class="note">
-        <input type="checkbox">
-        <p>Note 1</p>
+    <div class="page-shell">
+        <nav>
+            <a href="index.html" id="homeLogo">Task Flow</a>
+            <button id="logout-btn">Se déconnecter</button>
+        </nav>
+
+        <main class="dashboard">
+            <section class="hero-card">
+                <div class="hero-copy">
+                    <p class="eyebrow">Organisation personnelle</p>
+                    <h1>Bonjour <span id="username"></span></h1>
+                    <p class="hero-text">Retrouve tes priorités du moment et garde un espace simple pour avancer sans te disperser.</p>
+                </div>
+                <button type="button" class="hero-action open-task-modal">
+                    <span><i class="fas fa-plus"></i></span>
+                    <strong>Nouvelle tâche</strong>
+                </button>
+            </section>
+
+            <section class="tasks-panel">
+                <div class="task-menu">
+                    <div>
+                        <p class="section-kicker">Aujourd'hui</p>
+                        <h3>Voici tes tâches</h3>
+                    </div>
+                </div>
+                <div id="tasks-container"></div>
+            </section>
+        </main>
     </div>
+
+    <div class="modal-backdrop" id="task-modal" hidden>
+        <div class="task-modal" role="dialog" aria-modal="true" aria-labelledby="task-modal-title">
+            <div class="task-modal-header">
+                <div>
+                    <p class="modal-kicker" id="task-modal-kicker">Nouvelle carte</p>
+                    <h2 id="task-modal-title">Créer une tâche</h2>
+                </div>
+                <button type="button" class="modal-close" id="close-task-modal" aria-label="Fermer la fenêtre">
+                    <i class="fas fa-xmark"></i>
+                </button>
+            </div>
+            <p class="task-modal-intro" id="task-modal-intro">Ajoute un titre clair et quelques détails pour mieux t'organiser.</p>
+            <form id="task-form" class="task-form">
+                <input type="hidden" id="task-id">
+                <label for="task-title">Titre</label>
+                <input type="text" id="task-title" placeholder="Ex. Préparer la démo client" required>
+                <label for="task-description">Description</label>
+                <textarea id="task-description" placeholder="Décris l'objectif, les étapes ou le contexte utile" required></textarea>
+                <div class="task-form-actions">
+                    <button type="button" class="secondary-action" id="cancel-task-modal">Annuler</button>
+                    <button type="submit" class="primary-action" id="task-submit-button">Créer la tâche</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/all.min.js" integrity="sha512-6BTOlkauINO65nLhXhthZMtepgJSghyimIalb+crKRPhvhmsCdnIuGcVbR5/aQY2A+260iC1OPy1oCdB6pSSwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/app.js" type="module"></script>
 </body>
 </html>

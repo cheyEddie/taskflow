@@ -1,96 +1,243 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root {
-    --blue : #305CDE;
-    --red : #FF4C61;
-    --green : #004C1C;
-    --light-green : #8CE18B;
-    --yellow : #FFC107;
+    --ink: #1d1a17;
+    --muted: #6c6054;
+    --line: rgba(62, 43, 23, 0.12);
+    --blue: #155e75;
+    --red: #e11d48;
+    --green: #14532d;
+    --card: rgba(255, 252, 246, 0.85);
 }
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;    
-    background-color: #f4f4f4;
     margin: 0;
-    padding: 0;
+    min-height: 100vh;
+    font-family: "Manrope", sans-serif;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at top left, rgba(245, 158, 11, 0.22), transparent 30%),
+        radial-gradient(circle at 85% 12%, rgba(21, 94, 117, 0.18), transparent 22%),
+        linear-gradient(180deg, #f7f1e7 0%, #efe6d8 100%);
 }
+
+.auth-layout {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 28px;
+    align-items: center;
+    padding: 32px 0;
+}
+
+.auth-aside,
 .form-container {
-    width: 400px;
-    margin: 10% auto 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border: 1px solid var(--line);
+    border-radius: 30px;
+    background: var(--card);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 24px 60px rgba(55, 38, 19, 0.12);
 }
+
+.auth-aside {
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-aside::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    bottom: -80px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(21, 94, 117, 0.24), transparent 68%);
+}
+
+.brand-mark {
+    display: inline-block;
+    margin-bottom: 26px;
+    font-family: "Fraunces", serif;
+    font-size: 1.8rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.04em;
+}
+
+.aside-kicker,
+.form-kicker {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--blue);
+}
+
+.auth-aside h1 {
+    margin: 0;
+    font-family: "Fraunces", serif;
+    font-size: clamp(2.4rem, 4vw, 4rem);
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+}
+
+.aside-text {
+    max-width: 36rem;
+    margin: 18px 0 26px;
+    color: var(--muted);
+    line-height: 1.75;
+    font-size: 1.05rem;
+}
+
+.aside-points {
+    display: grid;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.aside-points p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: var(--ink);
+}
+
+.aside-points i {
+    color: #d97706;
+}
+
+.form-container {
+    padding: 34px;
+}
+
 .form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    margin: 0;
+    font-size: 2rem;
 }
+
+.form-intro {
+    margin: 12px 0 24px;
+    color: var(--muted);
+    line-height: 1.65;
+}
+
 .form-container .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
+
 .form-container .form-group label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
+    margin-bottom: 8px;
+    font-weight: 700;
 }
+
 .form-container .form-group input {
-    width: 95%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(62, 43, 23, 0.14);
+    border-radius: 16px;
+    font-size: 1rem;
     outline: none;
+    background: rgba(255, 255, 255, 0.72);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
+
+.form-container .form-group input:focus {
+    border-color: rgba(21, 94, 117, 0.65);
+    box-shadow: 0 0 0 4px rgba(21, 94, 117, 0.12);
+    transform: translateY(-1px);
+}
+
 .form-container button {
     width: 100%;
-    padding: 10px;
-    background-color: var(--blue);
+    padding: 14px 18px;
+    background: linear-gradient(135deg, #155e75, #0f766e);
     color: #fff;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 18px;
+    font-size: 1rem;
     cursor: pointer;
-    border-radius: 5px;
-    margin: 15px 0;
-    font-weight: bold;
+    margin: 18px 0 12px;
+    font-weight: 800;
+    box-shadow: 0 18px 32px rgba(15, 118, 110, 0.18);
 }
+
 .form-container .alternate {
     text-align: center;
-    margin-top: 10px;
+    margin: 0;
+    color: var(--muted);
 }
 
-/* form validation class */
+.form-container .alternate a {
+    color: var(--blue);
+    font-weight: 800;
+    text-decoration: none;
+}
+
 .invalid-form{
     border-color: var(--red) !important;
+    box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.1);
 }
 
-/* Position du toast */
 .toast {
     position: fixed;
-    top: -80px; /* caché au départ */
+    top: -80px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #3CAF50;
     color: white;
     padding: 15px 25px;
-    border-radius: 5px;
+    border-radius: 16px;
     font-size: 16px;
     opacity: 0;
     transition: all 0.5s ease;
     z-index: 9999;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 18px 36px rgba(0,0,0,0.18);
 }
+
 .toast.error {
     background-color: var(--red);
 }
+
 .toast.success {
     background-color: var(--green);
 }
 
-/* Quand le toast est visible */
 .toast.show {
-    top: 20px;      /* il descend */
-    opacity: 1;     /* il apparaît */
+    top: 20px;
+    opacity: 1;
 }
 
+.log-message {
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .auth-layout {
+        grid-template-columns: 1fr;
+        width: min(100% - 20px, 1120px);
+        padding: 20px 0;
+    }
+
+    .auth-aside,
+    .form-container {
+        border-radius: 22px;
+    }
+
+    .auth-aside {
+        padding: 28px;
+    }
+
+    .form-container {
+        padding: 26px;
+    }
+}

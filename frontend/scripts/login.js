@@ -3,8 +3,8 @@ const API_URL = 'http://localhost:5000';
 const successRegisterMessage = document.querySelector('.success-register-message');
 const params = new URLSearchParams(window.location.search);
 const loginForm = document.getElementById("login-form");
+const toast = document.getElementById("toast");
 function showToast(message) {
-    const toast = document.getElementById("toast");
     toast.textContent = message;
     toast.classList.add("show");
 
@@ -14,6 +14,7 @@ function showToast(message) {
     }, 5000);
 }
 if (params.get("success") === "1") {
+    toast.classList.remove("error");
     toast.classList.add("success");
     showToast("Inscription réussie ! Vous pouvez maintenant vous connecter.");
 
@@ -47,6 +48,7 @@ async function handleLogin(e) {
         } else {
             // Gestion de l'erreur
             console.log("❌ Échec de la connexion !");
+            toast.classList.remove("success");
             toast.classList.add("error");
             showToast("Échec de la connexion ! Vérifiez vos identifiants.");
         }
